@@ -7,7 +7,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didPushButton() {
-        let viewModel = GenericViewModel(value: 999)
+        let viewModel = FirstViewModel(value: 999)
         let firstVC = FirstViewController.create(with: viewModel)
         self.navigationController?.pushViewController(firstVC, animated: true)
     }

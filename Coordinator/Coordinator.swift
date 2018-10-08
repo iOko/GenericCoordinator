@@ -28,19 +28,20 @@ struct Navigator<ViewModel>: Navigatable {
     var controller: ControllerPresentable
 }
 
-extension Navigator where ViewModel == GenericViewModel<Int> { //, Controller == ControllerPresentable {
+extension Navigator where ViewModel == FirstViewModel {
     func submitAndNavigate() {
         
         //You shouldn't have full access to viewModel or viewController, it's wrong, I can change its properties
 //        controller.label.text = "555"
         
-        let secondViewModel = GenericViewModel(value: "test 123")
+        let secondViewModel = SecondViewModel(value: "test 123")
+        
         let secondViewController = SecondViewController.create(with: secondViewModel)
         controller.navigator.pushViewController(secondViewController, animated: true)
     }
 }
 
-extension Navigator where ViewModel == GenericViewModel<String> { //}, Controller == ControllerPresentable {
+extension Navigator where ViewModel == SecondViewModel {
     func submitAndNavigate() {
         print("viewModel is \(viewModel), value is: \(viewModel.value)")
         controller.navigator.popViewController(animated: true)

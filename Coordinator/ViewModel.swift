@@ -17,3 +17,11 @@ struct GenericViewModel<C>: AnyViewModel {
     var value: C
 }
 
+struct FirstViewModel {
+    var value: Int
+}
+
+struct SecondViewModel {
+    var value: String
+}
+

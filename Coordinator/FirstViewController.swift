@@ -1,7 +1,7 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-    var viewModel: GenericViewModel<Int>?
+    var viewModel: FirstViewModel?
     
     @IBOutlet weak var label: UILabel!
     @IBAction func didPushButton() {
@@ -10,7 +10,7 @@ class FirstViewController: UIViewController {
         coordinator.submitAndNavigate()
     }
     
-    static func create(with viewModel: GenericViewModel<Int>) -> FirstViewController {
+    static func create(with viewModel: FirstViewModel) -> FirstViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "FirstViewController") as? FirstViewController else { return FirstViewController() }
         vc.viewModel = viewModel
