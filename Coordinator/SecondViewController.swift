@@ -23,3 +23,9 @@ class SecondViewController: UIViewController {
         label.text = viewModel.value
     }
 }
+
+extension SecondViewController: ControllerPresentable {
+    var navigator: UINavigationController {
+        return navigationController ?? UINavigationController()
+    }
+}

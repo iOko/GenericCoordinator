@@ -16,3 +16,4 @@ protocol AnyViewModel {
 struct GenericViewModel<C>: AnyViewModel {
     var value: C
 }
+

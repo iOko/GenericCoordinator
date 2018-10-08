@@ -13,5 +13,6 @@ class ViewController: UIViewController {
     }
 }
 
-
-
+protocol ControllerPresentable {
+    var navigator: UINavigationController { get }
+}

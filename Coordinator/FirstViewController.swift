@@ -23,3 +23,9 @@ class FirstViewController: UIViewController {
         label.text = String(viewModel.value)
     }
 }
+
+extension FirstViewController: ControllerPresentable {
+    var navigator: UINavigationController {
+        return navigationController ?? UINavigationController()
+    }
+}

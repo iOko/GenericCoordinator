@@ -10,9 +10,8 @@ import Foundation
 
 protocol Navigatable {
     associatedtype ViewModel
-    associatedtype Controller
     var viewModel: ViewModel { get }
-    var controller: Controller { get }
+    var controller: ControllerPresentable { get }
     
     func submitAndNavigate()
 }
@@ -24,23 +23,27 @@ extension Navigatable {
     }
 }
 
-struct Navigator<ViewModel, Controller>: Navigatable {
+struct Navigator<ViewModel>: Navigatable {
     var viewModel: ViewModel
-    var controller: Controller
+    var controller: ControllerPresentable
 }
 
-extension Navigator where ViewModel == GenericViewModel<Int>, Controller == FirstViewController {
+extension Navigator where ViewModel == GenericViewModel<Int> { //, Controller == ControllerPresentable {
     func submitAndNavigate() {
+        
+        //You shouldn't have full access to viewModel or viewController, it's wrong, I can change its properties
+//        controller.label.text = "555"
+        
         let secondViewModel = GenericViewModel(value: "test 123")
         let secondViewController = SecondViewController.create(with: secondViewModel)
-        controller.navigationController?.pushViewController(secondViewController, animated: true)
+        controller.navigator.pushViewController(secondViewController, animated: true)
     }
 }
 
-extension Navigator where ViewModel == GenericViewModel<String>, Controller == SecondViewController {
+extension Navigator where ViewModel == GenericViewModel<String> { //}, Controller == ControllerPresentable {
     func submitAndNavigate() {
         print("viewModel is \(viewModel), value is: \(viewModel.value)")
-        controller.navigationController?.popViewController(animated: true)
+        controller.navigator.popViewController(animated: true)
         print("Dismissing \(controller)")
     }
 }
